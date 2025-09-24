@@ -1,0 +1,35 @@
+body {
+    background-color: #e4e3e6
+}
+
+.deactive {
+    display: none;
+}
+
+#main-container {
+    max-width: 500px;
+    width: 50%;
+    margin: 75px auto 0 auto;
+    background-color: #f3f2f6;
+    padding: 20px;
+    border-radius: 5px;
+    border: 2px solid #a8a7a9;
+}
+
+.score-bug {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.status-cont {
+    text-align: center;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}

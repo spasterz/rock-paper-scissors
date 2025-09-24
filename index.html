@@ -4,8 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
 </head>
 <body>
+
+    <div id="main-container">
+        <div class="status-cont">
+            <p id="status-txt">Want to Play a Game?</p>
+        </div>
+        <div class="score-bug">
+            <div class="player-choice-cont">
+                <p>Players Choice:<br><span id="player-choice"></span></p>
+            </div>
+            <div class="score">
+                <p>Game Score:<br><span id="player-score">0</span> | <span id="computer-score">0</span></p>
+            </div>
+            <div class="computer-choice-cont">
+                <p>Computer Choice:<br><span id="computer-choice"></span></p>
+            </div>
+        </div>
+        <div class="btn-container">
+            <div id="select-btn-cont" class="deactive">
+                <button class="select-btn" data-selection="rock">Rock</button>
+                <button class="select-btn" data-selection="paper">Paper</button>
+                <button class="select-btn" data-selection="scissors">Scissors</button>
+            </div>
+            <button class="play-btn">Play Game</button>
+        </div>
+    </div>
     
 </body>
 

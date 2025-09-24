@@ -9,6 +9,41 @@ console.log("Hello World");
 let options = ["rock", "paper", "scissors"];
 let playerScore = 0;
 let computerScore = 0;
+const selectionBtnCont = document.getElementById("select-btn-cont");
+const selectionBtns = document.querySelectorAll('.select-btn');
+const statusTxt = document.getElementById("status-txt");
+const computerChoiceTxt = document.getElementById("computer-choice");
+const playerChoiceTxt = document.getElementById("player-choice");
+const playerScoreTxt = document.getElementById("player-score");
+const computerScoreTxt = document.getElementById('computer-score');
+const playBtn = document.querySelector('.play-btn');
+
+selectionBtns.forEach(function(btn) {
+    btn.addEventListener('click', () => {
+        let playerSelection = btn.getAttribute('data-selection');
+        //console.log(playerSelection);
+        playRound(playerSelection, getComputerChoice())
+    })
+})
+
+playBtn.addEventListener('click', () => {
+    playBtn.classList.toggle('deactive');
+    selectionBtnCont.classList.toggle('deactive');
+    playerScoreTxt.innerText = "0";
+    playerChoiceTxt.innerText = "";
+    computerScoreTxt.innerText = "0";
+    computerChoiceTxt.innerText = "";
+
+    playGame();
+});
+
+function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function toggleBtns(btn) {
+
+}
 
 function getComputerChoice() {
     let num = Math.random();
@@ -25,9 +60,9 @@ function getComputerChoice() {
 
 //Create function getHumanChoice
 //Prompt user to enter value
-function getPlayerChoice() {
-    return prompt("Choose between rock, paper, or scissors");
-}
+// function getPlayerChoice() {
+//     return prompt("Choose between rock, paper, or scissors");
+// }
 
 
 //Create playRound function with two parameters playerChoice & computerChoice
@@ -43,24 +78,37 @@ function getPlayerChoice() {
         //Computer wins and gets a score?
 
 
-function playRound() {
-    let computerChoice = getComputerChoice();
-    let playerChoice = getPlayerChoice();
-    playerChoice = playerChoice.toLowerCase();
-    console.log("Player choice is: " + playerChoice);
-    console.log("Computer choice is: " + computerChoice);
+function playRound(playerSelection, computerSelection) {
+    let computerChoice = computerSelection;
+    let playerChoice = playerSelection;
+    //playerChoice = playerChoice.toLowerCase();
+    computerChoiceTxt.innerText = capitalize(computerChoice);
+    playerChoiceTxt.innerText = capitalize(playerChoice);
+    // console.log("Player choice is: " + playerChoice);
+    // console.log("Computer choice is: " + computerChoice);
 
     if (playerChoice === computerChoice) {
-        console.log("This rounds a tie")
+        statusTxt.innerText = "This Rounds a Tie"
+        //console.log("This rounds a tie")
     } else if (playerChoice === "rock" && computerChoice === "scissors" || playerChoice === "paper" && computerChoice ==="rock" || playerChoice === "scissors" && computerChoice === "paper") {
         playerScore++;
-        console.log("Human wins this round")
-        console.log("Player Score: " + playerScore + " Computer Score: " + computerScore);
+        statusTxt.innerText = "Player Wins This Round"
+        //console.log("Human wins this round")
+        playerScoreTxt.innerText = playerScore;
+        computerScoreTxt.innerText = computerScore;
+        //console.log("Player Score: " + playerScore + " Computer Score: " + computerScore);
     } else {
         computerScore++;
-        console.log("Computer wins this round");
-        console.log("Player Score: " + playerScore + " Computer Score: " + computerScore);
+        statusTxt.innerText = "Computer Wins This Round"
+        //console.log("Computer wins this round");
+        playerScoreTxt.innerText = playerScore;
+        computerScoreTxt.innerText = computerScore;
+        //console.log("Player Score: " + playerScore + " Computer Score: " + computerScore);
     }
+
+    playGame();
+
+    //playGame();
 }
 
 //Create function playGame
@@ -69,20 +117,27 @@ function playRound() {
     //ELSE
         //play another round
 function playGame() {
-    playRound();
+    // playBtn.classList.toggle('deactive');
+    // selectionBtnCont.classList.toggle('deactive');
 
     if (computerScore >= 5) {
-        console.log("Computer wins this game");
+        playBtn.innerText = "Play Again?"
+        playBtn.classList.toggle('deactive');
+        selectionBtnCont.classList.toggle('deactive');
+        statusTxt.innerText = "Computer Wins This Game!";
         playerScore = 0;
         computerScore = 0;
         return;
     } else if (playerScore >= 5) {
-        console.log("Congrats! You won this game");
+        playBtn.innerText = "Play Again?";
+        playBtn.classList.toggle('deactive');
+        selectionBtnCont.classList.toggle('deactive');
+        statusTxt.innerText = "Congrats! You won this game";
         playerScore = 0;
         computerScore = 0;
         return;
     } else {
-        playGame();
+        //playGame();
     }
 }
 
